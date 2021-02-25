@@ -422,7 +422,7 @@ LDAvis = function(to_select, json_file) {
             });
 
         svg.append("text")
-            .text("Intertopic Distance Map (via multidimensional scaling)")
+            .text("主題距離地圖 (MDS多維標度)")
             .attr("x", mdswidth/2 + margin.left)
             .attr("y", 30)
 	    .style("font-size", "16px")
@@ -465,7 +465,7 @@ LDAvis = function(to_select, json_file) {
             .attr("x", barguide.width + 5)
             .attr("y", mdsheight + 10 + barguide.height/2)
             .style("dominant-baseline", "middle")
-            .text("Overall term frequency");
+            .text("不分主題字詞總次數");
 
         d3.select("#bar-freqs").append("rect")
             .attr("x", 0)
@@ -478,7 +478,7 @@ LDAvis = function(to_select, json_file) {
             .attr("x", barguide.width/2 + 5)
             .attr("y", mdsheight + 10 + (3/2)*barguide.height + 5)
             .style("dominant-baseline", "middle")
-            .text("Estimated term frequency within the selected topic");
+            .text("在選擇主題下的估計字詞次數");
 
 	// footnotes:
         d3.select("#bar-freqs")
@@ -561,7 +561,7 @@ LDAvis = function(to_select, json_file) {
             .attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
             .style("text-anchor", "middle")
             .style("font-size", "16px")
-            .text("Top-" + R + " Most Salient Terms");
+            .text("前" + R + " 最顯著的主題代表字詞");
 	
         title.append("tspan")
 	    .attr("baseline-shift", "super")	    
@@ -595,7 +595,7 @@ LDAvis = function(to_select, json_file) {
             var topicLabel = document.createElement("label");
             topicLabel.setAttribute("for", topicID);
             topicLabel.setAttribute("style", "font-family: sans-serif; font-size: 14px");
-            topicLabel.innerHTML = "Selected Topic: <span id='" + topicID + "-value'></span>";
+            topicLabel.innerHTML = "選擇主題: <span id='" + topicID + "-value'></span>";
             topicDiv.appendChild(topicLabel);
 
             var topicInput = document.createElement("input");
@@ -611,19 +611,19 @@ LDAvis = function(to_select, json_file) {
  	    var previous = document.createElement("button");
 	    previous.setAttribute("id", topicDown);
 	    previous.setAttribute("style", "margin-left: 5px");
-	    previous.innerHTML = "Previous Topic";
+	    previous.innerHTML = "前一個主題";
             topicDiv.appendChild(previous);
 
 	    var next = document.createElement("button");
 	    next.setAttribute("id", topicUp);
 	    next.setAttribute("style", "margin-left: 5px");
-	    next.innerHTML = "Next Topic";
+	    next.innerHTML = "下一個主題";
             topicDiv.appendChild(next);
             
 	    var clear = document.createElement("button");
 	    clear.setAttribute("id", topicClear);
 	    clear.setAttribute("style", "margin-left: 5px");
-	    clear.innerHTML = "Clear Topic";
+	    clear.innerHTML = "不選擇主題";
             topicDiv.appendChild(clear);
 
             // lambda inputs
@@ -1013,7 +1013,7 @@ LDAvis = function(to_select, json_file) {
 		.attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
 		.style("text-anchor", "middle")
 		.style("font-size", "16px")
-		.text("Top-" + R + " Most Relevant Terms for Topic " + topics + " (" + Freq + "% of tokens)");
+		.text( "主題" + topics + "，前" + R + " 最相關的字詞 "+ " (" + Freq + "% of tokens)");
 	    
             // grab the bar-chart data for this topic only:
             var dat2 = lamData.filter(function(d) {
@@ -1115,7 +1115,7 @@ LDAvis = function(to_select, json_file) {
             circle.style.fill = color1;
 
             var title = d3.selectAll(".bubble-tool")
-		.text("Top-" + R + " Most Salient Terms");
+		.text("前" + R + "最顯著的主題代表字詞");
 	    title.append("tspan")
 	     	.attr("baseline-shift", "super")	    
 	     	.attr("font-size", 12)
